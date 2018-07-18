@@ -23,17 +23,43 @@ window.location.href='".BASE_URL('index.php/home')."';
         }else{
         	redirect('login','refresh');
         }
+        $this->load->model('obat_model','OM',true);
+        $this->load->model('pengobatan_model','pengobatan_model',true);
+
     }
 
     function index() {
         $data = array(
     		'judul' => 'Halaman Pengobatan',
+            'obat'  => $this->OM->getAllobat()
     		 );
-    	
+
+        $this->form_validation->set_rules('namap', 'Nama Pegawai', 'trim|required');
+        $this->form_validation->set_rules('umurp', 'Alamat Pegawai', 'trim|required');
+        $this->form_validation->set_rules('kel', 'Tanggal Lahir Pegawai', 'trim|required');
+        $this->form_validation->set_rules('obat', 'Tanggal Lahir Pegawai', 'trim|required');
+        $this->form_validation->set_rules('userfile', 'Tanggal Lahir Pegawai', 'trim|is_null');
+
+        if ($this->form_validation->run()==FALSE) {
         $this->load->view('pengobatan_view',$data);
-        
+        }else{
+            $config['upload_path'] = './assets/uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']  = 100000000;
+            $config['max_width']  = 10240;
+            $config['max_height']  = 7680;
+            
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            $this->upload->do_upload('userfile');
+                $this->load->view('pengobatan_view');
+            
+                
+                $this->pengobatan_model->insertPengobatan($data);
+                $this->load->view('sukses_input');
+            }
     }
     
-}
+} 
         
 ?>
