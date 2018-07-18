@@ -5,19 +5,17 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?=$judul ?></title>
-        <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>assets/jsgrid/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="<?php echo base_url()?>assets/jsgrid/jsgrid-theme.min.css" />
         <link type="text/css" href="<?php echo BASE_URL('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-	<link type="text/css" href="<?php echo BASE_URL('bootstrap/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
-	<link type="text/css" href="<?php echo BASE_URL('css/theme.css" rel="stylesheet') ?>">
-	<link type="text/css" href="<?php echo BASE_URL('images/icons/css/font-awesome.css" rel="stylesheet') ?>">
+    <link type="text/css" href="<?php echo BASE_URL('bootstrap/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
+    <link type="text/css" href="<?php echo BASE_URL('css/theme.css" rel="stylesheet') ?>">
+    <link type="text/css" href="<?php echo BASE_URL('images/icons/css/font-awesome.css" rel="stylesheet') ?>">
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">Puskesmasku </a>
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="#">Puskesmasku</a>
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                         <ul class="nav nav-icons">
                             <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
@@ -90,42 +88,53 @@
                     <div class="span9">
                         <div class="content">
                             <div class="module message">
-
                                 <div class="module-head">
                                     <h3>
-                                        Jadwal Kerja</h3>
+                                        Resep selesai</h3>
                                
                                 </div>
-                                
-                                 <div class="module-body table">
+                                <div class="module-body table">
                                     <table class="table table-message">
                                         <thead>
                                             <tr class="heading">
                                                 
                                                 <td class="cell-title">
-                                                    ID Login
+                                                    Nama Pasien
                                                 </td>
-                                                <td class="cell-title">
-                                                    Username
+                                                <td class="cell-time align-right">
+                                                    Umur
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    Keluhan
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    Foto Luka
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    keterangan obat
+                                                </td>
+                                                <td class="cell-time align-right">
+                                                    status
                                                 </td>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($jadual as $row): ?>
+                                            <?php if(is_array($kelir)){ ?>
+                                            <?php foreach($kelir as $row): ?>
                                             <tr>
-                                               
-                                                <td class="cell-title"><?=$row->id?></td>
-                                                <td class="cell-title"><?=$row->username?></td>
                                                 
+                                                <td class="cell-title"><?=$row->nama_pasien?></td>
+                                                <td class="cell-time align-right"><?=$row->umur?></td>
+                                                <td class="cell-time align-right"><?=$row->keluhan?></td>
+                                                <td class="cell-time align-right"><img src="<?=BASE_URL('/assets/uploads/'.$row->foto_luka)?>" style="width:340px;height:200px;">
+                                                <td class="cell-time align-right"><?=$row->ket_obat?></td>
+                                                <td class="cell-time align-right"><?=$row->status?></td>
                                             </tr>
                                             <?php endforeach; ?>
+                                            <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="module-body">
-                                    <br><br><br><br>
-                                <div id="jsGrid4"></div>
-
                                 <div class="module-foot">
                                 </div>
                             </div>
@@ -140,11 +149,9 @@
         <!--/.wrapper-->
         <div class="footer">
             <div class="container">
-                <b class="copyright">&copy; Kelompok2</b>All rights reserved.
+                <b class="copyright">&copy; Kelompok2  </b>All rights reserved.
             </div>
         </div>
        <script src="<?php echo BASE_URL('scripts/jquery-1.9.1.min.js') ?>" type="text/javascript"></script>
         <script src="<?php echo BASE_URL('scripts/jquery-ui-1.10.1.custom.min.js')?> " type="text/javascript"></script>
         <script src="<?php echo BASE_URL('bootstrap/js/bootstrap.min.js" type="text/javascript') ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url()?>assets/jsgrid/jsgrid.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assets/custom/grid4.js"></script>

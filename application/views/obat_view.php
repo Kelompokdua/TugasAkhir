@@ -52,25 +52,33 @@
                            <ul class="widget widget-menu unstyled">
                                 <li class="active"><?php echo "<a href='".base_url()."index.php/home'>"; ?><i class="menu-icon icon-dashboard"></i>Beranda
                                 </a></li>
-                                <li><?php echo "<a href='".base_url()."index.php/jadwal'>"; ?><i class="menu-icon icon-bullhorn"></i>Jadwal Kerja Dokter </a>
+                                <li><?php echo "<a href='".base_url()."index.php/jadwal'>"; ?><i class="menu-icon icon-bullhorn"></i>Jadwal</a>
+                                    <?php if($this->session->userdata('logged_in')['level'] == 'admin' ||$this->session->userdata('logged_in')['level'] == 'operator' ): ?>
+                                     <li><?php echo "<a href='".base_url()."index.php/penverifikasian'>"; ?><i class="menu-icon icon-check"></i>Acc Pengobatan</a>
+                                      <?php endif; ?>   
+                                     <?php if($this->session->userdata('logged_in')['level'] == 'admin' || $this->session->userdata('logged_in')['level'] == 'dokter'): ?>
                                  <li><?php echo "<a href='".base_url()."index.php/pengobatan'>"; ?><i class="menu-icon icon-tasks"></i>Pengobatan</a></li>
-                                         
+                                       <?php endif; ?>  
                                
                                 
                             </ul>
                             <!--/.widget-nav-->
                             
                             <!--/.widget-nav-->
+                           
                             <ul class="widget widget-menu unstyled">
                                 <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>Pengaturan</a>
                                     <ul id="togglePages" class="collapse unstyled">
+                                        <?php if($this->session->userdata('logged_in')['level'] == 'admin'): ?>
                                         <li><?php echo "<a href='".base_url()."index.php/jees'>"; ?><i class="icon-inbox"></i> List akun </a></li>
+                                         <?php endif; ?> 
+                                         <?php if($this->session->userdata('logged_in')['level'] == 'admin' ||$this->session->userdata('logged_in')['level'] == 'operator' ): ?>
                                          <li><?php echo "<a href='".base_url()."index.php/obat'>"; ?><i class="menu-icon icon-inbox"></i>Pergudangan Obat  </a></li>
 
-                                         <li><?php echo "<a href='".base_url()."index.php/jadwal2'>"; ?><i class="menu-icon icon-bullhorn"></i>Jadwal Kerja Dokter </a>
-                                       
+                                         <li><?php echo "<a href='".base_url()."index.php/jadwal2'>"; ?><i class="menu-icon icon-bullhorn"></i>Jadwal Kerja Semua</a>
+                                       <?php endif; ?> 
                                     </ul>
                                 </li>
                                 <li><?php echo "<a href='".base_url()."index.php/login/logout'>"; ?><i class="menu-icon icon-signout"></i>Logout </a></li>

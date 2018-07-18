@@ -10,7 +10,7 @@ class user_model extends CI_Model {
 
     public function getAlluser()
     {
-        $query = $this->db->get('login');
+        $query = $this->db->get('user');
         if($query->num_rows()>0){
             return $query->result();
         }
@@ -18,19 +18,19 @@ class user_model extends CI_Model {
 
      public function save($data)
     {
-      $this->db->insert('login', $data);
+      $this->db->insert('user', $data);
     }
 
     public function delete($id)
     {
-        $this->db->where('id_login', $id);
-        $this->db->delete('login');
+        $this->db->where('id', $id);
+        $this->db->delete('user');
     }
 
     public function update($data)
     {
-        $this->db->where('id_login', $data['id_login']);
-        $this->db->update('login', $data);
+        $this->db->where('id', $data['id']);
+        $this->db->update('user', $data);
     }
 }
         

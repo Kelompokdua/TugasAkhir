@@ -1,10 +1,11 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Jees extends CI_Controller {
+class Penverifikasian extends CI_Controller {
 
     function __construct() {
-        parent::__construct();
+         parent::__construct();
+         $this->load->model('verif_model');
         if($this->session->userdata('logged_in')){
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
@@ -27,51 +28,38 @@ window.location.href='".BASE_URL('index.php/home')."';
 
     function index() {
         $data = array(
-    		'judul' => 'Halaman list user',
-    		 );
-    	
-        $this->load->view('GridDinamisView',$data);
+            'judul' => 'Halaman verifikasi',
+             );
+        
+        $this->load->view('verif_view',$data);
+        
     }
 
-     public function getAlluser()
+    public function getAllverif()
     {
-        $this->load->model('user_model');
-        $result = $this->user_model->getAlluser();
+        $this->load->model('verif_model');
+        $result = $this->verif_model->getAllverif();
         header("Content-Type: application/json");
         echo json_encode($result);
     }
 
-    public function adduser(){
-        $this->load->model('user_model');
-        $data = array(
-            'username'  => $this->input->post('username'),
-            'password'  => md5($this->input->post('password')),
-            'level'     => $this->input->post('level')
-        );
-        $this->user_model->save($data);
+    public function deleteverif()
+    {
+        $this->load->model('verif_model');
+        $id = $this->input->post('id_pengobatan'); 
+        $this->verif_model->delete($id);
         header("Content-Type: application/json");
         echo json_encode($data);
     }
 
-     public function deleteuser()
-    {
-        $this->load->model('user_model');
-        $id = $this->input->post('id'); 
-        $this->user_model->delete($id);
-    }
-
-     public function edituser(){
-        $this->load->model('user_model');
+    public function editverif(){
+        $this->load->model('verif_model');
         $data = array(
-            'id' => $this->input->post('id'), 
-            'username'  => $this->input->post('username'),
-            'password'  => md5($this->input->post('password')),
-            'level'     => $this->input->post('level')
+            'id_pengobatan' => $this->input->post('id_pengobatan'), 
+            'status'  => $this->input->post('status')
              );
-        $this->user_model->update($data);
+        $this->verif_model->update($data);
         header("Content-Type: application/json");
         echo json_encode($data);
     }
 }
-        
-?>
