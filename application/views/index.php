@@ -30,10 +30,13 @@
                         </button>
                         </form>
                         <ul class="nav pull-right">
-                            <?php $session_data = $this->session->userdata('logged_in');
-            $data['username'] = $session_data['username']; ?>
+                            <?php 
+                            $session_data = $this->session->userdata('logged_in'); 
+                            $data['username'] = $session_data['username'];
+                            $data['level'] = $session_data['level'];
+                            ?>
             
-                            <li><a href="#">Selamat Datang : <?php echo $data['username'] ?> </a></li>
+                            <li><a href="#">Selamat Datang : <?php echo $data['level'] ?> </a></li>
                           
                         </ul>
                     </div>
@@ -60,20 +63,7 @@
                             <!--/.widget-nav-->
                             
                             <!--/.widget-nav-->
-                            <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-cog">
-                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
-                                </i>Pengaturan</a>
-                                    <ul id="togglePages" class="collapse unstyled">
-                                        <li><?php echo "<a href='".base_url()."index.php/jees'>"; ?><i class="icon-inbox"></i> List akun </a></li>
-                                         <li><?php echo "<a href='".base_url()."index.php/obat'>"; ?><i class="menu-icon icon-inbox"></i>Pergudangan Obat  </a></li>
-
-                                         <li><?php echo "<a href='".base_url()."index.php/jadwal2'>"; ?><i class="menu-icon icon-bullhorn"></i>Jadwal Kerja Dokter </a>
-                                       
-                                    </ul>
-                                </li>
-                                <li><?php echo "<a href='".base_url()."index.php/login/logout'>"; ?><i class="menu-icon icon-signout"></i>Logout </a></li>
-                            </ul>
+                            
                         </div>
                         <!--/.sidebar-->
                     </div>
